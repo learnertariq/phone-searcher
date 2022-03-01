@@ -6,12 +6,18 @@
   z-index: 999 !important;
 }
 
+#product-details-container div {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media only screen and (min-width: 768px) {
   .search-container {
     width: 35%;
   }
 
   #details-img {
-    width: 25% !important;
+    width: 50% !important;
   }
 }

@@ -36,11 +36,14 @@ async function displayPhones(phoneName) {
 async function displayProductDetails(id) {
   productDetailsContainer.textContent = "";
   let phone = await getData(id, false);
+  //
+  console.log(phone);
+  //
   productDetailsContainer.innerHTML = `
     <div class="text-center shadow shadow-lg rounded-3 py-4">
-      <h2 class="text-success">Phone Details</h2>
+      <h2 class="text-success">Product Details</h2>
       <img id="details-img" src="${phone.image}" class="w-75" alt="..." />
-      <div class="card-body">
+      <div class="card-body text-start ms-4">
         <h3 class="card-title">${phone.name}</h3>
         <h6 class="card-title">Brand: <span class="text-muted">${
           phone.brand
@@ -48,7 +51,13 @@ async function displayProductDetails(id) {
         <h6 class="card-title">Release Date: <span class="text-muted">${
           phone.releaseDate ? phone.releaseDate : "Not found"
         }</span>
-        </h6>${displayMainFeatures(phone.mainFeatures)}
+        </h6>
+        <div>
+        ${displayFeatures(phone.mainFeatures, "Main Features")}
+        </div>
+        <div>
+        ${displayFeatures(phone.others, "Other Connectivity")}
+        </div>
       </div>
     </div>`;
 }
@@ -73,11 +82,15 @@ async function getData(arg, allData) {
   }
 }
 
-function displayMainFeatures(features) {
-  let string = "";
+function displayFeatures(features, title) {
+  if (!features) return "";
+  let string = `<h3 class='fw-bold mt-5'>${title}:</h3>`;
   for (let [key, value] of Object.entries(features)) {
     if (key == "sensors") value = value.join(", ");
-    string += `<h6 class="card-title">${key}: <span class="text-muted">${value}</span></h6>`;
+    string += `
+    <h6 class="card-title">${key}: <span class="text-muted">${value}</span></h6>
+    <hr>
+    `;
   }
   return string;
 }
@@ -135,7 +148,7 @@ function clearDisplay() {
 }
 
 function nothingFound() {
-  productDetailsContainer.innerHTML = `<h2 class="text-danger text-center">No phone found</h2>`;
+  productDetailsContainer.innerHTML = `<h2 class="text-danger text-center">No Products found</h2>`;
 }
 
 // to show spinner
