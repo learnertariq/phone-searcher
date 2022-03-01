@@ -1,6 +1,7 @@
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const spinner = document.getElementById("spinner");
+const productsDisplay = document.getElementById("products-display");
 const productDetailsContainer = document.getElementById(
   "product-details-container"
 );
@@ -9,6 +10,7 @@ const showSpinner = (value) => {
   spinner.setAttribute("style", `display: ${value ? "block" : "none"}`);
 };
 
+// Search Handler
 searchBtn.addEventListener("click", (e) => {
   try {
     displayPhones(searchInput.value.toLowerCase());
@@ -18,10 +20,7 @@ searchBtn.addEventListener("click", (e) => {
 });
 
 async function displayPhones(phoneName) {
-  const productsDisplay = document.getElementById("products-display");
-  productDetailsContainer.textContent = "";
-  productsDisplay.textContent = "";
-
+  clearDisplay();
   let phones = [];
 
   try {
@@ -94,10 +93,8 @@ function displayMainFeatures(features) {
   let string = "";
   for (let [key, value] of Object.entries(features)) {
     if (key == "sensors") value = value.join(", ");
-
     string += `<h6 class="card-title">${key}: ${value}</h6>`;
   }
-
   return string;
 }
 
@@ -131,4 +128,9 @@ async function loadSinglePhone(id) {
   } finally {
     return phone;
   }
+}
+
+function clearDisplay() {
+  productDetailsContainer.textContent = "";
+  productsDisplay.textContent = "";
 }
