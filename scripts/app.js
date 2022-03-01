@@ -18,9 +18,16 @@ async function displayPhones(phoneName) {
   productDetailsContainer.textContent = "";
   productsDisplay.textContent = "";
 
-  showSpinner(true);
-  const phones = await loadPhones(phoneName);
-  showSpinner(false);
+  let phones = [];
+
+  try {
+    showSpinner(true);
+    phones = await loadPhones(phoneName);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    showSpinner(false);
+  }
 
   if (phones.length <= 0) {
     productDetailsContainer.innerHTML = `<h2 class="text-danger text-center">No phone found</h2>`;
@@ -50,9 +57,15 @@ async function displayPhones(phoneName) {
 async function displayProductDetails(id) {
   productDetailsContainer.textContent = "";
 
-  showSpinner(true);
-  const phone = await loadSinglePhone(id);
-  showSpinner(false);
+  let phone = {};
+  try {
+    showSpinner(true);
+    phone = await loadSinglePhone(id);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    showSpinner(false);
+  }
 
   productDetailsContainer.innerHTML = `
     <!-- Single Product -->
@@ -67,7 +80,7 @@ async function displayProductDetails(id) {
           }</h6>
 
           ${displayMainFeatures(phone.mainFeatures)}
-          
+
         </div>
       </div>`;
 }
@@ -83,17 +96,33 @@ function displayMainFeatures(features) {
 }
 
 async function loadPhones(phoneName) {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/phones?search=${phoneName}`
-  );
-  const { data } = await res.json();
-  return data;
+  let phones = [];
+
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/phones?search=${phoneName}`
+    );
+    const { data } = await res.json();
+    phones = data;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    return phones;
+  }
 }
 
 async function loadSinglePhone(id) {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/phone/${id}`
-  );
-  const { data } = await res.json();
-  return data;
+  let phone = {};
+
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/phone/${id}`
+    );
+    const { data } = await res.json();
+    phone = data;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    return phone;
+  }
 }
