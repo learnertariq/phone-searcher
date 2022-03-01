@@ -8,7 +8,7 @@ const productDetailsContainer = document.getElementById(
 
 let allPhones = [];
 
-// Search Handler
+// Search Listener
 searchBtn.addEventListener("click", (e) => {
   try {
     displayPhones(searchInput.value.toLowerCase());
@@ -110,11 +110,15 @@ function renderShowMoreBtn() {
     `
   );
 
-  // show more handler
-  const showMoreBtn = document.getElementById("show-more");
-  showMoreBtn.addEventListener("click", (e) => {
-    renderCards(allPhones);
-  });
+  // show more Listener
+  document
+    .getElementById("show-more")
+    .addEventListener("click", showMoreHandler);
+}
+
+function showMoreHandler() {
+  renderCards(allPhones);
+  clearShowMoreBtn();
 }
 
 function clearShowMoreBtn() {
