@@ -42,10 +42,12 @@ async function displayProductDetails(id) {
       <img id="details-img" src="${phone.image}" class="w-75" alt="..." />
       <div class="card-body">
         <h3 class="card-title">${phone.name}</h3>
-        <h6 class="card-title">${phone.brand}</h6>
-        <h6 class="card-title">Release Date: ${
+        <h6 class="card-title">Brand: <span class="text-muted">${
+          phone.brand
+        }</span></h6>
+        <h6 class="card-title">Release Date: <span class="text-muted">${
           phone.releaseDate ? phone.releaseDate : "Not found"
-        }
+        }</span>
         </h6>${displayMainFeatures(phone.mainFeatures)}
       </div>
     </div>`;
@@ -75,7 +77,7 @@ function displayMainFeatures(features) {
   let string = "";
   for (let [key, value] of Object.entries(features)) {
     if (key == "sensors") value = value.join(", ");
-    string += `<h6 class="card-title">${key}: ${value}</h6>`;
+    string += `<h6 class="card-title">${key}: <span class="text-muted">${value}</span></h6>`;
   }
   return string;
 }
