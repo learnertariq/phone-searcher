@@ -10,7 +10,11 @@ const showSpinner = (value) => {
 };
 
 searchBtn.addEventListener("click", (e) => {
-  displayPhones(searchInput.value);
+  try {
+    displayPhones(searchInput.value.toLowerCase());
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 async function displayPhones(phoneName) {
@@ -34,7 +38,7 @@ async function displayPhones(phoneName) {
     return;
   }
 
-  phones.forEach((phone) => {
+  phones.slice(0, 20).forEach((phone) => {
     productsDisplay.insertAdjacentHTML(
       "beforeend",
 
@@ -88,7 +92,9 @@ async function displayProductDetails(id) {
 // utility functions
 function displayMainFeatures(features) {
   let string = "";
-  for (const [key, value] of Object.entries(features)) {
+  for (let [key, value] of Object.entries(features)) {
+    if (key == "sensors") value = value.join(", ");
+
     string += `<h6 class="card-title">${key}: ${value}</h6>`;
   }
 
