@@ -86,7 +86,7 @@ function renderCards(phones) {
     productsDisplay.insertAdjacentHTML(
       "beforeend",
       `<div class="col">
-        <div class="card pt-3">
+        <div class="card pt-3 text-center">
           <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="..." />
           <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
