@@ -2,9 +2,16 @@
   width: 100%;
 }
 
+#spinner {
+  z-index: 999 !important;
+}
+
 @media only screen and (min-width: 768px) {
   .search-container {
     width: 35%;
   }
-  
+
+  #details-img {
+    width: 25% !important;
+  }
 }

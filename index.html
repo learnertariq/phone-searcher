@@ -21,6 +21,17 @@
     <!-- Header section starts -->
     <header>
       <h1 class="text-center">Phone Searcher</h1>
+
+      <!-- Spinner -->
+      <div
+        id="spinner"
+        style="display: none"
+        class="vh-100 position-absolute top-50 start-50"
+      >
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     </header>
     <!-- Header section ends -->
 
@@ -30,13 +41,14 @@
       <section class="container search-container mx-auto">
         <div class="input-group mb-3">
           <input
+            id="search-input"
             type="text"
             class="form-control"
             placeholder="Recipient's username"
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
           />
-          <button class="btn btn-outline-primary" type="button" id="btn-search">
+          <button class="btn btn-outline-primary" type="button" id="search-btn">
             Button
           </button>
         </div>
@@ -45,47 +57,12 @@
 
       <!-- products display starts -->
       <section class="container all-products">
+        <!-- Product details container starts -->
+        <section id="product-details-container" class="my-5 mx-auto"></section>
+        <!-- Product details container ends -->
+
         <div id="products-display" class="row row-cols-1 row-cols-md-3 g-2">
-          <!-- Single Product -->
-          <div class="col">
-            <div class="card">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
+          <!-------------- All products goes here ------------->
         </div>
       </section>
       <!-- products display starts -->
