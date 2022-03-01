@@ -36,9 +36,6 @@ async function displayPhones(phoneName) {
 async function displayProductDetails(id) {
   productDetailsContainer.textContent = "";
   let phone = await getData(id, false);
-  //
-  console.log(phone);
-  //
   productDetailsContainer.innerHTML = `
     <div class="text-center shadow shadow-lg rounded-3 py-4">
       <h2 class="text-success">Product Details</h2>
