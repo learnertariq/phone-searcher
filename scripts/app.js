@@ -28,8 +28,27 @@ async function displayPhones(phoneName) {
   // Render Only 20 results
   renderCards(allPhones.slice(0, 20));
 
-  // display show more btn
-  renderShowMoreBtn();
+  // display show more btn if there are more items than 20
+  if (allPhones.length > 20) renderShowMoreBtn();
+}
+
+function renderCards(phones) {
+  clearDisplay();
+  phones.forEach((phone) => {
+    productsDisplay.insertAdjacentHTML(
+      "beforeend",
+      `<div class="col">
+        <div class="card pt-3 text-center">
+          <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">${phone.phone_name}</h5>
+            <h6 class="card-title">${phone.brand}</h6>
+            <a href="#" onclick="displayProductDetails('${phone.slug}')" class="btn btn-primary">View details</a>
+          </div>
+        </div>
+      </div>`
+    );
+  });
 }
 
 // This function displays details of a product on th UI
@@ -90,25 +109,6 @@ function displayFeatures(features, title) {
     `;
   }
   return string;
-}
-
-function renderCards(phones) {
-  clearDisplay();
-  phones.forEach((phone) => {
-    productsDisplay.insertAdjacentHTML(
-      "beforeend",
-      `<div class="col">
-        <div class="card pt-3 text-center">
-          <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">${phone.phone_name}</h5>
-            <h6 class="card-title">${phone.brand}</h6>
-            <a href="#" onclick="displayProductDetails('${phone.slug}')" class="btn btn-primary">View details</a>
-          </div>
-        </div>
-      </div>`
-    );
-  });
 }
 
 function renderShowMoreBtn() {
