@@ -12,6 +12,7 @@ let allPhones = [];
 searchBtn.addEventListener("click", (e) => {
   try {
     displayPhones(searchInput.value.toLowerCase());
+    clearSearchInput();
   } catch (error) {
     console.log(error);
   }
@@ -151,4 +152,8 @@ function nothingFound() {
 // to show spinner
 function showSpinner(value) {
   spinner.setAttribute("style", `display: ${value ? "block" : "none"}`);
+}
+
+function clearSearchInput() {
+  searchInput.value = ''
 }
